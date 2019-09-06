@@ -7,7 +7,7 @@ from flask_login import LoginManager
 # Global variables
 db = SQLAlchemy()
 login = LoginManager()
-login.login_view = 'login'
+#login.login_view = 'login'
 
 
 def create_app():
@@ -19,6 +19,8 @@ def create_app():
         Config.init_app(app=app)
 
         db.init_app(app=app)
-        login.init_app(app=app)
+        #login.init_app(app=app)
+
+        from app import routes
 
         return app
