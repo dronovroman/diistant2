@@ -1,5 +1,5 @@
 from flask import Flask
-from config import config
+from app.config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
@@ -10,13 +10,13 @@ login = LoginManager()
 login.login_view = 'login'
 
 
-def create_app(config_name):
+def create_app():
     app = Flask(__name__)
 
     with app.app_context():
 
-        app.config.from_object(config[config_name])
-        config[config_name].init_app(app=app)
+        app.config.from_object(Config)
+        Config.init_app(app=app)
 
         db.init_app(app=app)
         login.init_app(app=app)
